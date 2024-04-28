@@ -12,7 +12,16 @@ public class ApiErrorResponse extends ApiResponse {
         this.messages = new ArrayList<>();
     }
 
+    public ApiErrorResponse(int statusCode, List<String> messages) {
+        super(statusCode);
+        this.messages = messages;
+    }
+
     public void addErrorMessage(String message) {
         this.messages.add(message);
+    }
+
+    public List<String> getMessages() {
+        return messages;
     }
 }

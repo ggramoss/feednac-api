@@ -1,6 +1,6 @@
 package senac.feednac.application.dto;
 
 public record CourseOutputDTO(
-        String name, String courseCategory
+        String name, String category
 ) {
 }

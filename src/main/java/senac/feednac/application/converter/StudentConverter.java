@@ -8,6 +8,14 @@ public class StudentConverter {
 
     public static StudentOutputDTO toStudentOutputDTO(Student student) {
         var course = new CourseOutputDTO(student.getCourse().getName(), student.getCourse().getCategory().getName());
-        return new StudentOutputDTO(student.getId(), student.getName(), course);
+        return new StudentOutputDTO(
+                student.getId(),
+                student.getName(),
+                student.getEmail(),
+                student.getStatus(),
+                student.getDateOfBirth(),
+                student.getTelephone(),
+                course
+        );
     }
 }

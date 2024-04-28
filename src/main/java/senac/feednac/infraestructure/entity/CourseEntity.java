@@ -7,11 +7,11 @@ import jakarta.persistence.*;
 public class CourseEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "cur_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "nome")
     private String name;
 
     @Column(name = "categoria")

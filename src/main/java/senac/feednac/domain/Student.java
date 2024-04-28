@@ -3,11 +3,19 @@ package senac.feednac.domain;
 public class Student {
     private long id;
     private String name;
+    private String email;
+    private Boolean status;
+    private String dateOfBirth;
+    private String telephone;
     private Course course;
 
-    public Student(long id, String name, Course course) {
+    public Student(long id, String name, String email, Boolean status, String dateOfBirth, String telephone, Course course) {
         this.id = id;
         this.name = name;
+        this.email = email;
+        this.status = status;
+        this.dateOfBirth = dateOfBirth;
+        this.telephone = telephone;
         this.course = course;
     }
 
@@ -17,6 +25,22 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getTelephone() {
+        return telephone;
     }
 
     public Course getCourse() {

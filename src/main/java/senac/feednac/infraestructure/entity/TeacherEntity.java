@@ -2,12 +2,13 @@ package senac.feednac.infraestructure.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "estudante")
-public class StudentEntity {
+import java.util.List;
+
+@Entity(name = "professor")
+public class TeacherEntity {
 
     @Id
-    @Column(name = "est_id")
+    @Column(name = "prf_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -17,22 +18,20 @@ public class StudentEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "status")
-    private Boolean status;
+    @Column(name = "usuario")
+    private String username;
 
-    @Column(name = "data_nascimento")
-    private String dateOfBirth;
+    @Column(name = "senha")
+    private String password;
 
     @Column(name = "telefone")
     private String telephone;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id", referencedColumnName = "cur_id")
-    private CourseEntity course;
+    @OneToMany(mappedBy = "teacher")
+    private List<SubjectEntity> subject;
 
     @Deprecated
-    public StudentEntity() {
-    }
+    public TeacherEntity() {}
 
     public Long getId() {
         return id;
@@ -46,19 +45,19 @@ public class StudentEntity {
         return email;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public String getUsername() {
+        return username;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public String getPassword() {
+        return password;
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public CourseEntity getCourse() {
-        return course;
+    public List<SubjectEntity> getSubject() {
+        return subject;
     }
 }

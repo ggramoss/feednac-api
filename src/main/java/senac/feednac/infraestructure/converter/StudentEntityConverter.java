@@ -15,6 +15,10 @@ public class StudentEntityConverter {
         return new Student(
                 student.getId(),
                 student.getName(),
+                student.getEmail(),
+                student.getStatus(),
+                student.getDateOfBirth(),
+                student.getTelephone(),
                 course
         );
     }
