@@ -30,6 +30,10 @@ public class StudentEntity {
     @JoinColumn(name = "curso_id", referencedColumnName = "cur_id")
     private CourseEntity course;
 
+    @ManyToOne
+    @JoinColumn(name = "turma_id", referencedColumnName = "tur_id")
+    private ClassEntity classEntity;
+
     @Deprecated
     public StudentEntity() {
     }
@@ -60,5 +64,9 @@ public class StudentEntity {
 
     public CourseEntity getCourse() {
         return course;
+    }
+
+    public ClassEntity getClassEntity() {
+        return classEntity;
     }
 }

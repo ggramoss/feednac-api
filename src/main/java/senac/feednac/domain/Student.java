@@ -8,8 +8,9 @@ public class Student {
     private String dateOfBirth;
     private String telephone;
     private Course course;
+    private Class aClass;
 
-    public Student(long id, String name, String email, Boolean status, String dateOfBirth, String telephone, Course course) {
+    public Student(long id, String name, String email, Boolean status, String dateOfBirth, String telephone, Course course, Class aClass) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -17,6 +18,7 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.telephone = telephone;
         this.course = course;
+        this.aClass = aClass;
     }
 
     public long getId() {
@@ -45,5 +47,9 @@ public class Student {
 
     public Course getCourse() {
         return course;
+    }
+
+    public Class getaClass() {
+        return aClass;
     }
 }
