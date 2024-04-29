@@ -6,7 +6,7 @@ import senac.feednac.infraestructure.entity.TeacherEntity;
 
 import java.util.ArrayList;
 
-public class TeacherConverter {
+public class TeacherEntityConverter {
 
     public static Teacher toTeacher(TeacherEntity entity) {
         var subjects = new ArrayList<Subject>();

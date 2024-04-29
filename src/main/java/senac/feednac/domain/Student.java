@@ -10,7 +10,16 @@ public class Student {
     private Course course;
     private Class aClass;
 
-    public Student(long id, String name, String email, Boolean status, String dateOfBirth, String telephone, Course course, Class aClass) {
+    public Student(
+            long id,
+            String name,
+            String email,
+            Boolean status,
+            String dateOfBirth,
+            String telephone,
+            Course course,
+            Class aClass
+    ) {
         this.id = id;
         this.name = name;
         this.email = email;

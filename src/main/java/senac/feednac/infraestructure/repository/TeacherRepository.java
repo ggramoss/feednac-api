@@ -2,7 +2,7 @@ package senac.feednac.infraestructure.repository;
 
 import org.springframework.stereotype.Service;
 import senac.feednac.domain.Teacher;
-import senac.feednac.infraestructure.converter.TeacherConverter;
+import senac.feednac.infraestructure.converter.TeacherEntityConverter;
 
 @Service
 public class TeacherRepository {
@@ -17,7 +17,7 @@ public class TeacherRepository {
         var teacherEntity = this.jpaRepository.findIdByUsernameAndPassword(username, password);
 
         if (teacherEntity.isPresent()) {
-            return teacherEntity.map(TeacherConverter::toTeacher).get();
+            return teacherEntity.map(TeacherEntityConverter::toTeacher).get();
         }
 
         return null;
