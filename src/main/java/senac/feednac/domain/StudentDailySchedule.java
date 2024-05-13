@@ -1,19 +1,17 @@
 package senac.feednac.domain;
 
-import java.util.List;
-
-public class Calendar {
+public class StudentDailySchedule {
 
     private Long id;
     private String semester;
     private Student student;
-    private List<DailySchedule> dailySchedules;
+    private DailySchedule dailySchedule;
 
-    public Calendar(Long id, String semester, Student student, List<DailySchedule> dailySchedules) {
+    public StudentDailySchedule(Long id, String semester, Student student, DailySchedule dailySchedule) {
         this.id = id;
         this.student = student;
         this.semester = semester;
-        this.dailySchedules = dailySchedules;
+        this.dailySchedule = dailySchedule;
     }
 
     public Long getId() {
@@ -28,7 +26,7 @@ public class Calendar {
         return semester;
     }
 
-    public List<DailySchedule> getDailySchedules() {
-        return dailySchedules;
+    public DailySchedule getDailySchedule() {
+        return dailySchedule;
     }
 }

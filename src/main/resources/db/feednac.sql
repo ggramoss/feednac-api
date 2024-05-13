@@ -42,15 +42,6 @@ CREATE TABLE disciplina (
     CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES professor(prf_id)
 );
 
-CREATE TABLE estudante_disciplina (
-      estudante_disciplina_id SERIAL PRIMARY KEY,
-      estudante_id INT,
-      disciplina_id INT,
-      CONSTRAINT fk_estudante FOREIGN KEY (estudante_id) REFERENCES estudante(est_id),
-      CONSTRAINT fk_disciplina FOREIGN KEY (disciplina_id) REFERENCES disciplina(dsp_id),
-      CONSTRAINT estudante_disciplina_unique UNIQUE (estudante_id, disciplina_id)
-);
-
 CREATE TABLE aula (
     aul_id SERIAL PRIMARY KEY,
     disciplina_id INT,
@@ -64,29 +55,21 @@ CREATE TABLE aula (
     CONSTRAINT fk_turma FOREIGN KEY (turma_id) REFERENCES turma(tur_id)
 );
 
-CREATE TABLE calendario (
-    cal_id SERIAL PRIMARY KEY,
-    semestre VARCHAR(30),
-    estudante_id INT,
-    CONSTRAINT fk_estudante FOREIGN KEY (estudante_id) REFERENCES estudante(est_id)
-);
-
 CREATE TABLE cronograma_diario (
     crd_id SERIAL PRIMARY KEY,
     dia_semana INT,
     aula_id INT,
-    calendario_id INT,
-    CONSTRAINT fk_aula FOREIGN KEY (aula_id) REFERENCES aula(aul_id),
-    CONSTRAINT fk_calendario FOREIGN KEY (calendario_id) REFERENCES calendario(cal_id)
+    CONSTRAINT fk_aula FOREIGN KEY (aula_id) REFERENCES aula(aul_id)
 );
 
-CREATE TABLE cronogramadiario_calendario (
-    cronogramadiario_calendario_id SERIAL PRIMARY KEY,
+CREATE TABLE cronogramadiario_estudante (
+    cronogramadiario_estudante_id SERIAL PRIMARY KEY,
     cronograma_diario_id INT,
-    calendario_id INT,
+    semestre VARCHAR(30),
+    estudante_id INT,
     CONSTRAINT fk_cronograma_diario FOREIGN KEY (cronograma_diario_id) REFERENCES cronograma_diario(crd_id),
-    CONSTRAINT fk_calendario_id FOREIGN KEY (calendario_id) REFERENCES calendario(cal_id),
-    CONSTRAINT cronogramadiario_calendario_unique UNIQUE (cronograma_diario_id, calendario_id)
+    CONSTRAINT fk_estudante_id FOREIGN KEY (estudante_id) REFERENCES estudante(est_id),
+    CONSTRAINT cronogramadiario_estudante_unique UNIQUE (cronograma_diario_id, estudante_id)
 );
 
 
@@ -121,16 +104,6 @@ INSERT INTO disciplina (nome, professor_id) VALUES
 ('Sistemas distribuidos', 3); -- Carlos
 
 
---- INSERT DISCIPLINA DO ALUNO ---
-INSERT INTO estudante_disciplina (estudante_id, disciplina_id) VALUES
-(1, 1), -- Joao - Computacao em nuvem
-(1, 2), -- Joao - Logica de programaçao
-(1, 3), -- Joao - Sistemas distribuidos
-(2, 1), -- Maria - Computacao em nuvem
-(2, 2), -- Maria - Logica de programaçao
-(2, 3); -- Maria - Sistemas distribuidos
-
-
 --- INSERT AULA ---
 INSERT INTO aula (disciplina_id, turma_id, duracao, andar, sala, hora_inicio, hora_fim) VALUES
 (1, 1, '3 horas', 1, 103, '19:00', '22:00'), -- Computacao em nuvem, ADS4N24/1
@@ -141,27 +114,21 @@ INSERT INTO aula (disciplina_id, turma_id, duracao, andar, sala, hora_inicio, ho
 (3, 2, '3 horas', 6, 607, '09:00', '12:00'); -- Sistemas distribuidos, ADS5N24/1
 
 
---- INSERT CALENDARIO ---
-INSERT INTO calendario(semestre, estudante_id) VALUES
-('4', 1), -- Quarto semestre - Joao
-('5', 2); -- Quinto semestre - Maria
-
-
 --- INSERT CRONOGRAMA DIARIO ---
-INSERT INTO cronograma_diario(dia_semana, aula_id, calendario_id) VALUES
-(0, 1, 1), --- Segunda, Computacao nuvem (alberto), Calendario Joao
-(1, 3, 1), --- Terca, Logica de programacao, Calendario Joao
-(2, 5, 1), --- Quarta, Sistemas distribuidos, Calendario Joao
-(1, 2, 2), --- Terca,  Computacao em nuvem, Calendario Maria
-(3, 4, 2), --- Quinta, Logica de programacao, Calendario Maria
-(4, 6, 2); --- Sexta, Sistemas distribuidos, Calendario Maria
+INSERT INTO cronograma_diario(dia_semana, aula_id) VALUES
+(0, 1), --- Segunda, Computacao nuvem -- Alberto
+(1, 3), --- Terca, Logica de programacao -- Beatriz
+(2, 5), --- Quarta, Sistemas distribuidos -- Carlos
+(1, 2), --- Terca,  Computacao em nuvem -- Alberto
+(3, 4), --- Quinta, Logica de programacao -- Beatriz
+(4, 6); --- Sexta, Sistemas distribuidos -- Alberto
 
 
---- INSERT CRONOGRAMA DIARIO - CALENDARIO ---
-INSERT INTO cronogramadiario_calendario(cronograma_diario_id, calendario_id) VALUES
-(1 , 1),
-(2 , 1),
-(3 , 1),
-(4 , 2),
-(5 , 2),
-(6 , 2);
+--- INSERT CRONOGRAMA DIARIO ESTUDANTE ---
+INSERT INTO cronogramadiario_estudante(cronograma_diario_id, estudante_id, semestre) VALUES
+(1 , 1, '4'), --- Segunda, Computacao nuvem -- Alberto -- JOAO
+(2 , 1, '4'), --- Terca, Logica de programacao -- Beatriz -- JOAO
+(3 , 1, '4'), --- Quarta, Sistemas distribuidos -- Carlos -- JOAO
+(4 , 2, '5'), --- Terca,  Computacao em nuvem -- Alberto -- MARIA
+(5 , 2, '5'), --- Quinta, Logica de programacao -- Beatriz -- MARIA
+(6 , 2, '5'); --- Sexta, Sistemas distribuidos -- Carlos -- MARIA

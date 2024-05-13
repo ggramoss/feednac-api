@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import senac.feednac.application.converter.CalendarConverter;
+import senac.feednac.application.converter.StudentDailyScheduleConverter;
 import senac.feednac.application.converter.StudentConverter;
 import senac.feednac.application.response.ApiErrorResponse;
 import senac.feednac.application.response.ApiResponse;
 import senac.feednac.application.response.ApiSuccessResponse;
-import senac.feednac.usecase.FindCalendarByStudentId;
+import senac.feednac.usecase.FindStudentDailyScheduleByStudentId;
 import senac.feednac.usecase.StudentLoginUseCase;
 
 import java.util.Objects;
@@ -19,14 +19,14 @@ import java.util.Objects;
 public class StudentController {
 
     private StudentLoginUseCase loginUseCase;
-    private FindCalendarByStudentId findCalendarByStudentId;
+    private FindStudentDailyScheduleByStudentId findStudentDailyScheduleByStudentId;
 
     public StudentController(
             StudentLoginUseCase loginUseCase,
-            FindCalendarByStudentId findCalendarByStudentId
+            FindStudentDailyScheduleByStudentId findStudentDailyScheduleByStudentId
     ) {
         this.loginUseCase = loginUseCase;
-        this.findCalendarByStudentId = findCalendarByStudentId;
+        this.findStudentDailyScheduleByStudentId = findStudentDailyScheduleByStudentId;
     }
 
     @GetMapping(path = "/login/student/{id}")
@@ -46,12 +46,12 @@ public class StudentController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @GetMapping(path = "/student/{id}/calendar")
+    @GetMapping(path = "/student/{id}/dailySchedules")
     @ResponseBody
-    public ResponseEntity<ApiResponse> getCalendarById(@PathVariable(name = "id") long id) {
-        var calendar = findCalendarByStudentId.find(id);
+    public ResponseEntity<ApiResponse> getDailySchedulesById(@PathVariable(name = "id") long id) {
+        var dailySchedules = findStudentDailyScheduleByStudentId.find(id);
 
-        var outputDto = CalendarConverter.calendarOutputDTO(calendar);
+        var outputDto = StudentDailyScheduleConverter.toStudentDailyScheduleListOutputDTO(dailySchedules);
 
         ApiSuccessResponse apiResponse = new ApiSuccessResponse(200, outputDto);
         return ResponseEntity.ok(apiResponse);
