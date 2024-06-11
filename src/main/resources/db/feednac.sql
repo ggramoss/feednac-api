@@ -72,6 +72,37 @@ CREATE TABLE cronogramadiario_estudante (
     CONSTRAINT cronogramadiario_estudante_unique UNIQUE (cronograma_diario_id, estudante_id)
 );
 
+CREATE TABLE feedback (
+    fdb_id SERIAL PRIMARY KEY,
+    aula_id INT,
+    data DATE,
+    nota_geral INT,
+    comentario_adicional TEXT,
+    CONSTRAINT fk_aula_id FOREIGN KEY (aula_id) REFERENCES aula(aul_id)
+);
+
+CREATE TABLE pergunta (
+  per_id SERIAL PRIMARY KEY,
+  valor TEXT
+);
+
+CREATE TABLE opcao_resposta (
+    opr_id SERIAL PRIMARY KEY,
+    pergunta_id INT,
+    valor TEXT,
+    CONSTRAINT fk_pergunta_id FOREIGN KEY (pergunta_id) REFERENCES pergunta(per_id)
+);
+
+CREATE TABLE resposta_pergunta (
+  rsp_id SERIAL PRIMARY KEY,
+  feedback_id INT,
+  pergunta_id INT,
+  opcao_id INT,
+  CONSTRAINT fk_feedback_id FOREIGN KEY (feedback_id) REFERENCES feedback(fdb_id),
+  CONSTRAINT fk_pergunta_id FOREIGN KEY (pergunta_id) REFERENCES pergunta(per_id),
+  CONSTRAINT fk_opcao_id FOREIGN KEY (opcao_id) REFERENCES opcao_resposta(opr_id)
+);
+
 
 --- INSERT CURSO ---
 INSERT INTO curso (nome, categoria) VALUES
@@ -132,3 +163,61 @@ INSERT INTO cronogramadiario_estudante(cronograma_diario_id, estudante_id, semes
 (4 , 2, '5'), --- Terca,  Computacao em nuvem -- Alberto -- MARIA
 (5 , 2, '5'), --- Quinta, Logica de programacao -- Beatriz -- MARIA
 (6 , 2, '5'); --- Sexta, Sistemas distribuidos -- Carlos -- MARIA
+
+
+--- INSERT QUESTAO ---
+INSERT INTO pergunta(valor) VALUES
+('Você achou o conteúdo apresentado durante a aula claro e compreensível?'),
+('Em uma escala de 1 a 5, quão satisfeito você está com a aula em geral?'),
+('A aula conseguiu manter seu interesse pelo assunto?'),
+('Como você classificaria a qualidade geral da aula?'),
+('Você sente que aprendeu algo novo durante esta aula?');
+
+
+--- INSERT ALTERNATIVA RESPOSTA ---
+INSERT INTO opcao_resposta(pergunta_id, valor) VALUES
+(1, 'Sim, o conteúdo foi muito claro e compreensível'), -- 1
+(1, 'Sim, na maior parte do tempo, mas alguns pontos poderiam ser melhor explicados'), -- 2
+(1, 'Alguns trechos foram claros, mas outros foram um pouco confusos'), -- 3
+(1, 'Não, achei o conteúdo difícil de seguir em várias partes'), -- 4
+(1, 'Não, o conteúdo foi confuso e pouco compreensível'), -- 5
+(2, '5 (muito satisfeito) - A aula atendeu todas as minhas expectativas'), -- 6
+(2, '4 (satisfeito) - A aula foi boa, mas há espaço para melhorias.'), -- 7
+(2, '3 (neutro) - A aula foi mediana, nem boa nem ruim'), -- 8
+(2, '2 (pouco satisfeito) - A aula deixou a desejar em vários aspectos'), -- 9
+(2, '1 (muito insatisfeito) - A aula não atendeu minhas expectativas'), -- 10
+(3, 'Sim, a aula foi muito interessante e manteve meu interesse o tempo todo.'), -- 11
+(3, 'Sim, a maior parte da aula conseguiu manter meu interesse.'), -- 12
+(3, 'Parcialmente, alguns momentos foram interessantes, mas outros foram entediantes.'), -- 13
+(3, 'Não muito, a aula teve várias partes monótonas.'), -- 14
+(3, 'Não, a aula não conseguiu manter meu interesse.'), -- 15
+(4, 'Excelente - A aula foi muito bem estruturada e apresentada.'), -- 16
+(4, 'Boa - A qualidade da aula foi boa, mas pode melhorar.'), -- 17
+(4, 'Regular - A qualidade da aula foi mediana, com pontos altos e baixos.'), -- 18
+(4, 'Ruim - A qualidade da aula deixou a desejar.'), -- 19
+(4, 'Péssima - A qualidade da aula foi muito baixa.'), -- 20
+(5, 'Sim, aprendi muitas coisas novas que serão úteis.'), -- 21
+(5, 'Sim, aprendi algumas coisas novas que eu não conhecia.'), -- 22
+(5, 'Aprendi poucas coisas novas, a maioria do conteúdo já era familiar'), -- 23
+(5, 'Não muito, já conhecia a maior parte do conteúdo.'), -- 24
+(5, 'Não, não aprendi nada de novo nesta aula.'); -- 25
+
+
+--- INSERT FEEDBACK ---
+INSERT INTO feedback(aula_id, data, nota_geral, comentario_adicional) VALUES
+(1, '03/06/2024', 9, 'Muito boa aula!'),
+(3, '04/06/2024', 7, 'Explicaçao boa no geral');
+
+
+--- INSERT RESPOSTAS ---
+INSERT INTO resposta_pergunta(feedback_id, pergunta_id, opcao_id) VALUES
+(1, 1, 1),
+(1, 2, 7),
+(1, 3, 11),
+(1, 4, 16),
+(1, 5, 22),
+(2, 1, 3),
+(2, 2, 8),
+(2, 3, 14),
+(2, 4, 18),
+(2, 5, 25);
