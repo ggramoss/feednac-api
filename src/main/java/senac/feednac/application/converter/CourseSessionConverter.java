@@ -7,6 +7,7 @@ public class CourseSessionConverter {
 
     public static CourseSessionOutputDTO toCourseSessionOutputDTO(CourseSession courseSession) {
         return new CourseSessionOutputDTO(
+                courseSession.getId(),
                 courseSession.getDuration(),
                 courseSession.getStartTime(),
                 courseSession.getEndTime(),

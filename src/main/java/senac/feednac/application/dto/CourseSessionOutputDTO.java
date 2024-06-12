@@ -1,6 +1,7 @@
 package senac.feednac.application.dto;
 
 public record CourseSessionOutputDTO(
+    Long id,
     String duration,
     String startTime,
     String endTime,
