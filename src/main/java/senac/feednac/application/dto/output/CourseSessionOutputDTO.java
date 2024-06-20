@@ -1,4 +1,4 @@
-package senac.feednac.application.dto;
+package senac.feednac.application.dto.output;
 
 public record CourseSessionOutputDTO(
     Long id,

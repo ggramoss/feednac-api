@@ -1,6 +1,6 @@
 package senac.feednac.application.converter;
 
-import senac.feednac.application.dto.TeacherLoginOutputDTO;
+import senac.feednac.application.dto.output.TeacherLoginOutputDTO;
 import senac.feednac.domain.Subject;
 import senac.feednac.domain.Teacher;
 

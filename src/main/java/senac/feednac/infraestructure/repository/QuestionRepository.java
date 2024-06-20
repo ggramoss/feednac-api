@@ -16,6 +16,16 @@ public class QuestionRepository {
     }
 
     public List<Question> getQuestions() {
-        return QuestionEntityConverter.toQuestion(jpaRepository.findAll());
+        return QuestionEntityConverter.toQuestions(jpaRepository.findAll());
+    }
+
+    public List<Question> findAllByIds(List<Long> ids) {
+        var questions = this.jpaRepository.findAllById(ids);
+        return QuestionEntityConverter.toQuestions(questions);
+    }
+
+    public Question findById(Long id) {
+        var question = this.jpaRepository.findById(id);
+        return question.map(QuestionEntityConverter::toQuestion).orElse(null);
     }
 }

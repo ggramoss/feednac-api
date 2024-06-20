@@ -1,6 +1,6 @@
 package senac.feednac.application.converter;
 
-import senac.feednac.application.dto.DailyScheduleOutputDTO;
+import senac.feednac.application.dto.output.DailyScheduleOutputDTO;
 import senac.feednac.domain.DailySchedule;
 
 import java.util.List;

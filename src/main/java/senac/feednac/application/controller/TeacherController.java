@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import senac.feednac.application.converter.DailyScheduleConverter;
 import senac.feednac.application.converter.TeacherConverter;
-import senac.feednac.application.dto.TeacherLoginInputDTO;
+import senac.feednac.application.dto.input.TeacherLoginInputDTO;
 import senac.feednac.application.response.ApiErrorResponse;
 import senac.feednac.application.response.ApiResponse;
 import senac.feednac.application.response.ApiSuccessResponse;

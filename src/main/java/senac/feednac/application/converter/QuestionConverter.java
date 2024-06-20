@@ -1,8 +1,8 @@
 package senac.feednac.application.converter;
 
-import senac.feednac.application.dto.AnswerOptionOutputDTO;
-import senac.feednac.application.dto.GetQuestionsOutputDTO;
-import senac.feednac.application.dto.QuestionOutputDTO;
+import senac.feednac.application.dto.output.AnswerOptionOutputDTO;
+import senac.feednac.application.dto.output.GetQuestionsOutputDTO;
+import senac.feednac.application.dto.output.QuestionOutputDTO;
 import senac.feednac.domain.Question;
 
 import java.util.List;

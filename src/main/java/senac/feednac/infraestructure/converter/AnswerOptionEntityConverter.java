@@ -8,9 +8,13 @@ import java.util.List;
 public class AnswerOptionEntityConverter {
 
     public static List<AnswerOption> toAnswerOptions(List<AnswerOptionEntity> entityList) {
-        return entityList.stream().map(entity -> new AnswerOption(
-                entity.getId(),
-                entity.getOption()
-        )).toList();
+        return entityList.stream().map(AnswerOptionEntityConverter::toAnswerOption).toList();
+    }
+
+    public static AnswerOption toAnswerOption(AnswerOptionEntity answerOption) {
+        return new AnswerOption(
+                answerOption.getId(),
+                answerOption.getOption()
+        );
     }
 }

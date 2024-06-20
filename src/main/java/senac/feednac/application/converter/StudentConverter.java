@@ -1,7 +1,7 @@
 package senac.feednac.application.converter;
 
-import senac.feednac.application.dto.CourseOutputDTO;
-import senac.feednac.application.dto.StudentLoginOutputDTO;
+import senac.feednac.application.dto.output.CourseOutputDTO;
+import senac.feednac.application.dto.output.StudentLoginOutputDTO;
 import senac.feednac.domain.Student;
 
 public class StudentConverter {

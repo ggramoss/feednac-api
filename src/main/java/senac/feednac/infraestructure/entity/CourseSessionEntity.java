@@ -19,12 +19,13 @@ public class CourseSessionEntity {
     private Long classRoom;
     @Column(name = "andar")
     private Long flat;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "disciplina_id", referencedColumnName = "dsp_id")
     private SubjectEntity subject;
     @ManyToOne
     @JoinColumn(name = "turma_id", referencedColumnName = "tur_id")
     private ClassEntity aClass;
+
     @Deprecated
     public CourseSessionEntity() {}
 

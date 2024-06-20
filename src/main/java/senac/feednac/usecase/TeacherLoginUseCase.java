@@ -1,7 +1,7 @@
 package senac.feednac.usecase;
 
 import org.springframework.stereotype.Service;
-import senac.feednac.application.dto.TeacherLoginInputDTO;
+import senac.feednac.application.dto.input.TeacherLoginInputDTO;
 import senac.feednac.domain.Teacher;
 import senac.feednac.infraestructure.repository.TeacherRepository;
 

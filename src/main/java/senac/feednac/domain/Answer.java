@@ -5,20 +5,17 @@ public class Answer {
     private Feedback feedback;
     private Question question;
     private AnswerOption option;
-    private String value;
 
     public Answer(
             Long id,
             Feedback feedback,
-            Question questionId,
-            AnswerOption option,
-            String value
+            Question question,
+            AnswerOption option
     ) {
         this.id = id;
         this.feedback = feedback;
-        this.question = questionId;
+        this.question = question;
         this.option = option;
-        this.value = value;
     }
 
     public Long getId() {
@@ -35,9 +32,5 @@ public class Answer {
 
     public AnswerOption getOption() {
         return option;
-    }
-
-    public String getValue() {
-        return value;
     }
 }

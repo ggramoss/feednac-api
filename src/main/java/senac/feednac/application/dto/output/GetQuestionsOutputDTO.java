@@ -1,4 +1,4 @@
-package senac.feednac.application.dto;
+package senac.feednac.application.dto.output;
 
 import java.util.List;
 

@@ -7,15 +7,17 @@ import java.util.List;
 
 public class QuestionEntityConverter {
 
-    public static List<Question> toQuestion (List<QuestionEntity> questionEntityList) {
-        return questionEntityList.stream().map(entity -> {
-            var opDomain = AnswerOptionEntityConverter.toAnswerOptions(entity.getOptions());
+    public static List<Question> toQuestions (List<QuestionEntity> questionEntityList) {
+        return questionEntityList.stream().map(QuestionEntityConverter::toQuestion).toList();
+    }
 
-            return new Question(
-                    entity.getId(),
-                    opDomain,
-                    entity.getValue()
-            );
-        }).toList();
+    public static Question toQuestion(QuestionEntity questionEntity) {
+        var opDomain = AnswerOptionEntityConverter.toAnswerOptions(questionEntity.getOptions());
+
+        return new Question(
+                questionEntity.getId(),
+                opDomain,
+                questionEntity.getValue()
+        );
     }
 }

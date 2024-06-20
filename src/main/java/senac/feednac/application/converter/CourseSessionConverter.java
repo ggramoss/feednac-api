@@ -1,6 +1,6 @@
 package senac.feednac.application.converter;
 
-import senac.feednac.application.dto.CourseSessionOutputDTO;
+import senac.feednac.application.dto.output.CourseSessionOutputDTO;
 import senac.feednac.domain.CourseSession;
 
 public class CourseSessionConverter {
